@@ -20,7 +20,7 @@ export function JsonLd() {
     },
     areaServed: site.city,
     openingHours: "Mo-Sa 08:00-18:00",
-    priceRange: "$$",
+    priceRange: "Varies — estimate on request",
     founder: {
       "@type": "Person",
       name: site.owner.name,

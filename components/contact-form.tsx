@@ -105,7 +105,7 @@ export function ContactForm({ defaultService }: ContactFormProps) {
         type="submit"
         className="mt-6 bg-accent px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-deep"
       >
-        Request a quote
+        Request an estimate
       </button>
     </form>
   );

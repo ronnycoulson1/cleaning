@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nunito, Nunito_Sans } from "next/font/google";
+import { DM_Sans, DM_Serif_Display } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { JsonLd } from "@/components/json-ld";
@@ -7,16 +7,16 @@ import { StickyCta } from "@/components/sticky-cta";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const nunitoSans = Nunito_Sans({
-  variable: "--font-nunito-sans",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const nunito = Nunito({
-  variable: "--font-nunito",
+const dmSerif = DM_Serif_Display({
+  variable: "--font-dm-serif",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${nunitoSans.variable} ${nunito.variable} h-full`}
+      className={`${dmSans.variable} ${dmSerif.variable} h-full`}
     >
       <body className="flex min-h-full flex-col antialiased">
         <JsonLd />

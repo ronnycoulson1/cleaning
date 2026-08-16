@@ -12,7 +12,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -35,42 +35,44 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         solid
-          ? "bg-ink/90 text-bg-soft backdrop-blur-md"
-          : "bg-transparent text-bg-soft"
+          ? "border-b border-line bg-surface text-ink"
+          : "border-b border-transparent bg-transparent text-white"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:h-20 sm:px-8">
         <Link
           href="/"
-          className="font-display text-lg font-bold tracking-tight sm:text-xl"
+          className="font-display text-lg tracking-tight sm:text-xl"
           onClick={() => setOpen(false)}
         >
           {site.name}
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-bg-soft ${
-                pathname === link.href ? "text-bg-soft" : "text-bg-soft/75"
+              className={`text-sm font-medium transition-opacity hover:opacity-100 ${
+                pathname === link.href ? "opacity-100" : "opacity-80"
               }`}
             >
               {link.label}
             </Link>
           ))}
           <Link
-            href="/pricing"
-            className="bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-deep"
+            href="/contact#message"
+            className={`btn-primary text-sm ${
+              solid ? "" : "shadow-[0_4px_16px_rgba(0,0,0,0.25)]"
+            }`}
           >
-            Get a quote
+            Message Leyla
           </Link>
         </nav>
 
         <button
           type="button"
-          className="relative z-10 flex h-10 w-10 items-center justify-center lg:hidden"
+          className="flex h-10 w-10 items-center justify-center md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -97,23 +99,29 @@ export function Header() {
       </div>
 
       {open ? (
-        <nav className="flex flex-col gap-1 border-t border-white/10 px-5 py-6 lg:hidden">
+        <nav
+          className={`flex flex-col border-t px-5 py-4 md:hidden ${
+            solid
+              ? "border-line bg-surface text-ink"
+              : "border-white/15 bg-ink text-white"
+          }`}
+        >
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="py-3 text-lg font-medium"
+              className="py-3 text-base font-medium"
               onClick={() => setOpen(false)}
             >
               {link.label}
             </Link>
           ))}
           <Link
-            href="/pricing"
-            className="mt-3 bg-accent px-4 py-3 text-center text-sm font-semibold text-white"
+            href="/contact#message"
+            className="btn-primary mt-2 text-sm"
             onClick={() => setOpen(false)}
           >
-            Get a quote
+            Message Leyla
           </Link>
         </nav>
       ) : null}

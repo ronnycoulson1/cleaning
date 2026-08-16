@@ -8,7 +8,7 @@ export const site = {
   hours: "Mon–Sat, 8am–6pm",
   city: "Cleveland",
   owner: {
-    name: "Layla",
+    name: "Leyla",
     role: "Owner",
     photo: "/images/layla.jpg",
   },
@@ -26,9 +26,8 @@ export const site = {
 
 export const navLinks = [
   { href: "/services", label: "Services" },
-  { href: "/pricing", label: "Pricing" },
+  { href: "/pricing", label: "Estimate" },
   { href: "/about", label: "About" },
-  { href: "/reviews", label: "Reviews" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
@@ -37,70 +36,45 @@ export const services = [
     slug: "residential",
     title: "Residential",
     copy: "Weekly or biweekly home cleans that keep kitchens, baths, and living spaces consistently fresh.",
-    price: "From $120 / visit",
   },
   {
     slug: "commercial",
     title: "Commercial",
     copy: "After-hours cleaning for offices, studios, and retail so your space is ready for the next day.",
-    price: "From $180 / visit",
   },
   {
     slug: "deep-clean",
     title: "Deep clean",
     copy: "A thorough reset for neglected corners, baseboards, appliances, and high-touch surfaces.",
-    price: "From $220 / visit",
   },
   {
     slug: "move",
     title: "Move-in / move-out",
     copy: "Detailed turnover cleans that help deposits clear and new spaces feel immediately livable.",
-    price: "From $250 / visit",
   },
   {
     slug: "recurring",
     title: "Recurring plans",
-    copy: "Set a weekly or biweekly rhythm and lock in priority scheduling with a consistent team.",
-    price: "Save 10–15% vs. one-off",
+    copy: "Set a weekly or biweekly rhythm with a consistent team.",
   },
 ] as const;
 
-export const pricingTiers = [
+export const estimateFactors = [
   {
-    name: "Refresh",
-    price: "$120+",
-    cadence: "per visit",
-    bestFor: "Studios & 1-bed homes",
-    includes: [
-      "Kitchen & bathroom reset",
-      "Dust, vacuum, mop",
-      "Trash emptied",
-      "Surface wipe-down",
-    ],
+    title: "Size of the space",
+    copy: "Square footage and number of rooms change the time needed.",
   },
   {
-    name: "Standard",
-    price: "$165+",
-    cadence: "per visit",
-    bestFor: "Most 2–3 bed homes",
-    includes: [
-      "Everything in Refresh",
-      "Bedrooms & living areas",
-      "Inside microwave",
-      "Baseboards spot-clean",
-    ],
+    title: "Condition",
+    copy: "A light refresh costs differently than a deep reset or move-out.",
   },
   {
-    name: "Deep",
-    price: "$220+",
-    cadence: "per visit",
-    bestFor: "Seasonal resets & turnovers",
-    includes: [
-      "Everything in Standard",
-      "Inside fridge & oven",
-      "Cabinet fronts & detail work",
-      "Move-ready finish",
-    ],
+    title: "How often",
+    copy: "One-time, weekly, or biweekly — frequency affects the estimate.",
+  },
+  {
+    title: "Extras you need",
+    copy: "Inside appliances, cabinets, or special requests are priced into the quote.",
   },
 ] as const;
 
@@ -113,7 +87,7 @@ export const testimonials = [
   },
   {
     quote:
-      "Our office looks better every Monday than it did when we cleaned it ourselves. Clear pricing, no surprises.",
+      "Our office looks better every Monday than it did when we cleaned it ourselves. Clear estimate up front, no surprises.",
     name: "Jordan L.",
     detail: "Downtown · Commercial weekly",
   },
@@ -249,9 +223,9 @@ export const faqs = [
       "We ask for 24 hours' notice for reschedules or cancellations. Anything less may incur a small fee to cover the reserved time slot.",
   },
   {
-    question: "How do you handle pricing for larger or unusual spaces?",
+    question: "How much does a cleaning cost?",
     answer:
-      "The prices listed are starting points for typical spaces. When you request a quote, we'll confirm size and condition and send back a firm number before booking anything.",
+      "Message Leyla with a few details about your space and you’ll get a clear estimate before anything is booked.",
   },
   {
     question: "Are you insured if something gets damaged?",
