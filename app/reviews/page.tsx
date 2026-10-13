@@ -9,28 +9,46 @@ export const metadata: Metadata = {
 };
 
 export default function ReviewsPage() {
+  const hasReviews = testimonials.length > 0;
+
   return (
     <main>
       <PageHero
         title="Reviews"
-        description="What local clients say after a clean."
+        description={
+          hasReviews
+            ? "What local clients say after a clean."
+            : "Real client feedback only — ask Leyla for references while we gather public reviews."
+        }
       />
 
       <section className="px-5 py-14 sm:px-8 sm:py-16">
-        <ul className="mx-auto max-w-5xl divide-y divide-line border-y border-line">
-          {testimonials.map((item) => (
-            <li key={item.name} className="py-8">
-              <p className="max-w-2xl text-lg leading-relaxed text-ink">
-                “{item.quote}”
+        <div className="mx-auto max-w-6xl">
+          {hasReviews ? (
+            <ul className="divide-y divide-line border-y border-line">
+              {testimonials.map((item) => (
+                <li key={item.name} className="py-8">
+                  <p className="text-sm tracking-tight text-gold" aria-hidden>
+                    ★★★★★
+                  </p>
+                  <p className="mt-2 max-w-2xl text-lg leading-relaxed text-ink">
+                    “{item.quote}”
+                  </p>
+                  <p className="mt-4 font-semibold text-ink">{item.name}</p>
+                  <p className="text-sm text-muted">{item.detail}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="border border-line bg-surface px-6 py-10 sm:px-8">
+              <p className="max-w-xl text-lg leading-relaxed text-ink">
+                We don’t post placeholder quotes. Message Leyla and she’ll share
+                references from recent Cleveland clients.
               </p>
-              <p className="mt-4 font-semibold text-ink">{item.name}</p>
-              <p className="text-sm text-muted">{item.detail}</p>
-            </li>
-          ))}
-        </ul>
-        <div className="mx-auto mt-10 max-w-5xl">
-          <Link href="/contact#message" className="btn-primary">
-            Message Leyla
+            </div>
+          )}
+          <Link href="/contact#message" className="btn-primary mt-10">
+            Get estimate
           </Link>
         </div>
       </section>

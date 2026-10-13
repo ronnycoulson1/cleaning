@@ -1,22 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  /* Warm off-white + sage — fresh, calm, not corporate blue */
-  --bg: #f6f4ef;
-  --bg-soft: #efece6;
-  --ink: #1c211c;
-  --muted: #5c6358;
+  /* Warm off-white + sage + gold accents */
+  --bg: #f7f5f0;
+  --bg-soft: #efece5;
+  --ink: #1a1f1a;
+  --muted: #5a6258;
   --accent: #6b7f5c;
-  --accent-deep: #556849;
-  --accent-soft: #e2e8da;
+  --accent-deep: #4f5f44;
+  --accent-soft: #e4eadc;
+  --cta: #e8d9a8;
+  --cta-ink: #1a1f1a;
+  --gold: #b8973d;
   --surface: #fffcf7;
-  --line: #ddd8cf;
-  --hero-overlay: linear-gradient(
-    100deg,
-    rgba(28, 33, 28, 0.45) 0%,
-    rgba(28, 33, 28, 0.2) 55%,
-    rgba(28, 33, 28, 0.1) 100%
-  );
+  --line: #ddd7cc;
+  --sage-bar: #5f7353;
 }
 
 @theme inline {
@@ -27,8 +25,12 @@
   --color-accent: var(--accent);
   --color-accent-deep: var(--accent-deep);
   --color-accent-soft: var(--accent-soft);
+  --color-cta: var(--cta);
+  --color-cta-ink: var(--cta-ink);
+  --color-gold: var(--gold);
   --color-surface: var(--surface);
   --color-line: var(--line);
+  --color-sage-bar: var(--sage-bar);
   --font-display: var(--font-dm-serif);
   --font-sans: var(--font-dm-sans);
 }
@@ -48,29 +50,46 @@ body {
   color: var(--ink);
 }
 
+/* Dark CTA for light backgrounds — high contrast */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--accent);
+  background: var(--accent-deep);
   color: #fff;
   font-weight: 700;
-  padding: 0.95rem 1.5rem;
+  padding: 0.9rem 1.4rem;
   transition: background 0.15s ease;
 }
 
 .btn-primary:hover {
-  background: var(--accent-deep);
+  background: var(--ink);
+}
+
+/* Cream CTA for sage / dark sections only */
+.btn-cream {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cta);
+  color: var(--cta-ink);
+  font-weight: 700;
+  padding: 0.9rem 1.4rem;
+  transition: filter 0.15s ease;
+}
+
+.btn-cream:hover {
+  filter: brightness(0.96);
 }
 
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--surface);
+  background: transparent;
   color: var(--ink);
   font-weight: 600;
-  padding: 0.95rem 1.5rem;
+  padding: 0.9rem 1.4rem;
   border: 1px solid var(--line);
   transition: background 0.15s ease, border-color 0.15s ease;
 }
@@ -86,37 +105,12 @@ body {
   background: var(--bg-soft);
 }
 
-.client-pin {
-  background: transparent !important;
-  border: none !important;
-}
-
-.client-pin-dot {
-  display: block;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--accent);
-  border: 2px solid #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
-}
-
-.client-pin-dot--featured {
-  width: 22px;
-  height: 22px;
-  background: var(--accent-deep);
-  border-width: 3px;
-}
-
-.client-pin-label {
-  display: inline-block;
-  margin-top: 4px;
-  padding: 3px 8px;
-  background: var(--ink);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 600;
-  white-space: nowrap;
+.service-area-fill {
+  fill: var(--accent);
+  fill-opacity: 0.22;
+  stroke: var(--accent-deep);
+  stroke-width: 2;
+  stroke-opacity: 0.65;
 }
 
 @media (prefers-reduced-motion: reduce) {

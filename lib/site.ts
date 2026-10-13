@@ -1,10 +1,10 @@
 export const site = {
-  name: "clean & shine",
+  name: "Shine & Clean",
   tagline: "Thorough home and office cleaning across Cleveland",
   phoneHref: "tel:+12168349636",
   smsHref: "sms:+12168349636",
-  email: "hello@cleanandshine.example",
-  emailHref: "mailto:hello@cleanandshine.example",
+  email: "hello@shineandclean.example",
+  emailHref: "mailto:hello@shineandclean.example",
   hours: "Mon–Sat, 8am–6pm",
   city: "Cleveland",
   owner: {
@@ -29,6 +29,57 @@ export const navLinks = [
   { href: "/pricing", label: "Estimate" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
+] as const;
+
+export const trustPills = [
+  "No contracts, ever",
+  "Supplies included",
+  "Insured & bonded",
+] as const;
+
+export const howWeClean = [
+  {
+    num: "01",
+    title: "High-touch surfaces first",
+    copy: "Light switches, doorknobs, handles, and bathroom surfaces get wiped with a sanitizing solution on every visit.",
+  },
+  {
+    num: "02",
+    title: "Products you can trust",
+    copy: "We bring professional supplies — eco-friendly options available — not a mystery mix from the trunk.",
+  },
+  {
+    num: "03",
+    title: "Microfiber mopping",
+    copy: "Floors are mopped with microfiber so dirt lifts instead of smearing around.",
+  },
+] as const;
+
+export const whatWeClean = [
+  "Kitchens & appliances",
+  "Bathrooms",
+  "Bedrooms & living areas",
+  "Floors & baseboards",
+  "Dusting & high-touch spots",
+  "Offices & common areas",
+] as const;
+
+export const bookingSteps = [
+  {
+    num: "01",
+    title: "Tell us the space",
+    copy: "Size, timing, and what you need cleaned.",
+  },
+  {
+    num: "02",
+    title: "Get an estimate",
+    copy: "Leyla sends a clear quote before anything is booked.",
+  },
+  {
+    num: "03",
+    title: "We clean",
+    copy: "On time, careful, and thorough.",
+  },
 ] as const;
 
 export const services = [
@@ -78,32 +129,12 @@ export const estimateFactors = [
   },
 ] as const;
 
-export const testimonials = [
-  {
-    quote:
-      "They show up on time, leave the place sparkling, and somehow never make it feel invasive. We’ve been on a biweekly plan for a year.",
-    name: "Maya R.",
-    detail: "Ohio City · Recurring home clean",
-  },
-  {
-    quote:
-      "Our office looks better every Monday than it did when we cleaned it ourselves. Clear estimate up front, no surprises.",
-    name: "Jordan L.",
-    detail: "Downtown · Commercial weekly",
-  },
-  {
-    quote:
-      "Move-out clean got our deposit back in full. Detail-oriented without being fussy about the process.",
-    name: "Priya S.",
-    detail: "Lakewood · Move-out",
-  },
-  {
-    quote:
-      "Eco products on request, careful with our kid’s toys, and the kitchen always smells like a fresh start — not chemicals.",
-    name: "Chris & Ana",
-    detail: "Cleveland Heights · Deep clean",
-  },
-] as const;
+/** Real client quotes only — leave empty until Leyla provides them */
+export const testimonials: ReadonlyArray<{
+  quote: string;
+  name: string;
+  detail: string;
+}> = [];
 
 export const serviceAreas = [
   "Downtown",
@@ -118,92 +149,17 @@ export const serviceAreas = [
   "West Park",
 ] as const;
 
-/** Client locations across Cleveland */
-export const clientPins = [
-  {
-    address: "2696 Cranlyn Rd, Shaker Heights, OH 44122",
-    area: "Shaker Heights",
-    lat: 41.48314,
-    lng: -81.51862,
-    featured: true,
-  },
-  {
-    address: "2141 W 28th St, Cleveland, OH",
-    area: "Ohio City",
-    lat: 41.4842,
-    lng: -81.7108,
-  },
-  {
-    address: "200 Public Square, Cleveland, OH",
-    area: "Downtown",
-    lat: 41.4995,
-    lng: -81.6944,
-  },
-  {
-    address: "2393 Professor Ave, Cleveland, OH",
-    area: "Tremont",
-    lat: 41.4768,
-    lng: -81.6949,
-  },
-  {
-    address: "14600 Detroit Ave, Lakewood, OH",
-    area: "Lakewood",
-    lat: 41.4851,
-    lng: -81.7982,
-  },
-  {
-    address: "12417 Cedar Rd, Cleveland Heights, OH",
-    area: "Cleveland Heights",
-    lat: 41.5012,
-    lng: -81.5648,
-  },
-  {
-    address: "3400 Fairmount Blvd, Cleveland Heights, OH",
-    area: "Cleveland Heights",
-    lat: 41.4938,
-    lng: -81.5582,
-  },
-  {
-    address: "11150 Euclid Ave, Cleveland, OH",
-    area: "University Circle",
-    lat: 41.5043,
-    lng: -81.6084,
-  },
-  {
-    address: "16708 Chagrin Blvd, Shaker Heights, OH",
-    area: "Shaker Heights",
-    lat: 41.4648,
-    lng: -81.5274,
-  },
-  {
-    address: "5400 Pearl Rd, Parma, OH",
-    area: "Parma",
-    lat: 41.3912,
-    lng: -81.7284,
-  },
-  {
-    address: "15812 Lorain Ave, Cleveland, OH",
-    area: "West Park",
-    lat: 41.4518,
-    lng: -81.8086,
-  },
-  {
-    address: "6501 Detroit Ave, Cleveland, OH",
-    area: "Detroit Shoreway",
-    lat: 41.4836,
-    lng: -81.7324,
-  },
-  {
-    address: "11801 Clifton Blvd, Lakewood, OH",
-    area: "Lakewood",
-    lat: 41.4902,
-    lng: -81.7688,
-  },
-] as const;
-
-export const trustBadges = [
-  { icon: "user-check", label: "Background-checked team" },
-  { icon: "star", label: "4.9 average from local reviews" },
+/** Approximate Greater Cleveland service footprint (no street addresses) */
+export const serviceAreaPolygon = [
+  [41.53, -81.82],
+  [41.54, -81.72],
+  [41.53, -81.58],
+  [41.5, -81.5],
+  [41.45, -81.48],
+  [41.39, -81.55],
+  [41.38, -81.72],
+  [41.42, -81.82],
+  [41.48, -81.85],
 ] as const;
 
 export const faqs = [

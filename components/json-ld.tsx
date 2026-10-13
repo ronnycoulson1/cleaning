@@ -4,12 +4,12 @@ export function JsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://cleanandshine.example/#business",
+    "@id": "https://shineandclean.example/#business",
     name: site.name,
     description: site.tagline,
-    url: "https://cleanandshine.example",
+    url: "https://shineandclean.example",
     email: site.email,
-    image: "https://cleanandshine.example/images/cleaner-bathroom.jpg",
+    image: "https://shineandclean.example/images/cleaner-bathroom.jpg",
     address: {
       "@type": "PostalAddress",
       streetAddress: site.address.street,
@@ -25,7 +25,7 @@ export function JsonLd() {
       "@type": "Person",
       name: site.owner.name,
       jobTitle: site.owner.role,
-      image: `https://cleanandshine.example${site.owner.photo}`,
+      image: `https://shineandclean.example${site.owner.photo}`,
     },
   };
 

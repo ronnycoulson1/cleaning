@@ -1,92 +1,220 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ClientMap } from "@/components/client-map";
-import { faqs, services, site } from "@/lib/site";
+import { TrustBadges } from "@/components/trust-badges";
+import {
+  bookingSteps,
+  faqs,
+  howWeClean,
+  serviceAreas,
+  services,
+  site,
+  whatWeClean,
+} from "@/lib/site";
 
-const steps = [
-  { num: "1", title: "Tell us the space", copy: "Size, timing, and what you need." },
-  { num: "2", title: "Get an estimate", copy: "Leyla sends a clear quote before anything is booked." },
-  { num: "3", title: "We clean", copy: "On time and careful with the details." },
+const benefits = [
+  "Supplies included — we bring everything",
+  "Same-week estimates available",
+  "Free estimate — no obligation",
 ];
 
 export default function Home() {
   return (
     <main>
-      {/* Full-bleed hero — first prototype composition */}
-      <section className="relative min-h-[100svh] overflow-hidden bg-ink">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/cleaner-bathroom.jpg"
-            alt="Professional cleaner detailing a bathroom vanity"
-            fill
-            priority
-            className="object-cover object-[center_28%]"
-            sizes="100vw"
-            quality={85}
-          />
-          <div
-            className="absolute inset-0"
-            style={{ background: "var(--hero-overlay)" }}
-          />
-        </div>
-
-        <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-20 lg:justify-center">
-          <div className="max-w-xl bg-ink/90 px-6 py-8 sm:px-8 sm:py-10">
-            <p className="font-display text-4xl tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+      <section className="border-b border-line bg-surface">
+        <div className="mx-auto grid max-w-6xl lg:grid-cols-2">
+          <div className="flex flex-col justify-center px-5 py-14 sm:px-8 sm:py-16 lg:py-20">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+              House & office cleaning · {site.city}
+            </p>
+            <p className="mt-4 font-display text-4xl tracking-tight text-ink sm:text-5xl md:text-6xl">
               {site.name}
             </p>
-            <h1 className="mt-4 font-display text-xl leading-snug tracking-tight text-white sm:text-2xl md:text-3xl">
-              {site.tagline}
+            <h1 className="mt-4 max-w-md font-display text-2xl leading-snug text-ink sm:text-3xl">
+              Come home to a house that is actually clean.
             </h1>
-            <p className="mt-3 text-base leading-relaxed text-white/90 sm:text-lg">
-              Careful on the details. Message for a free estimate.
+
+            <p className="mt-4 max-w-md leading-relaxed text-muted">
+              Thorough cleaning for busy households and workplaces. Message
+              Leyla for a free estimate — clear pricing before you book.
             </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+
+            <ul className="mt-6 space-y-2">
+              {benefits.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-2 text-sm text-ink"
+                >
+                  <span className="mt-0.5 font-semibold text-accent" aria-hidden>
+                    ✓
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link href="/contact#message" className="btn-primary">
-                Message Leyla
+                Get estimate
               </Link>
               <Link href="/services" className="btn-secondary">
                 View services
               </Link>
             </div>
+
+            <TrustBadges className="mt-8" />
+          </div>
+
+          <div className="relative min-h-[300px] sm:min-h-[420px] lg:min-h-full">
+            <Image
+              src="/images/cleaner-bathroom.jpg"
+              alt="Leyla cleaning a bathroom vanity with spray and cloth"
+              fill
+              priority
+              className="object-cover object-[18%_62%] lg:object-[22%_58%]"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={85}
+            />
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-16 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
-            Services
-          </h2>
-          <ul className="mt-8 divide-y divide-line border-y border-line">
-            {services.slice(0, 4).map((service) => (
-              <li key={service.slug} className="py-5">
-                <h3 className="font-display text-lg font-bold text-ink">
-                  {service.title}
-                </h3>
-                <p className="mt-1 max-w-2xl text-muted">{service.copy}</p>
-              </li>
-            ))}
-          </ul>
-          <Link
-            href="/services"
-            className="mt-6 inline-block text-sm font-semibold text-accent hover:text-accent-deep"
-          >
-            Full service list →
-          </Link>
+      {/* About up high — personal edge */}
+      <section className="border-b border-line bg-bg-soft px-5 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[240px_1fr] lg:gap-14">
+          <Image
+            src={site.owner.photo}
+            alt="Leyla, owner of Shine & Clean"
+            width={472}
+            height={1024}
+            className="h-auto w-full max-w-[240px]"
+            sizes="240px"
+            unoptimized
+          />
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+              About
+            </p>
+            <h2 className="mt-2 font-display text-3xl tracking-tight text-ink sm:text-4xl">
+              Hi — I&apos;m Leyla.
+            </h2>
+            <p className="mt-4 max-w-xl leading-relaxed text-muted">
+              I run a small local cleaning team in Cleveland. When you book
+              Shine & Clean, you work with me and the people I trust. Clear
+              estimates, careful work, and a home that feels done right.
+            </p>
+            <Link
+              href="/about"
+              className="mt-6 inline-block text-sm font-semibold text-accent hover:text-accent-deep"
+            >
+              More about Leyla →
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className="border-y border-line bg-bg-soft px-5 py-16 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
-            How it works
+      <section className="border-b border-line px-5 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+            How we clean
+          </p>
+          <h2 className="mt-2 max-w-xl font-display text-3xl tracking-tight text-ink sm:text-4xl">
+            Clean is what you see. Careful is what you don’t.
           </h2>
-          <ol className="mt-10 grid gap-8 sm:grid-cols-3">
-            {steps.map((step) => (
+          <p className="mt-3 max-w-xl text-muted">
+            Anyone can make a counter shine. We focus on the surfaces your
+            family touches all day.
+          </p>
+          <ol className="mt-10 space-y-8 sm:space-y-10">
+            {howWeClean.map((item) => (
+              <li
+                key={item.num}
+                className="grid gap-2 border-t border-line pt-8 sm:grid-cols-[4rem_1fr] sm:gap-6"
+              >
+                <span className="font-display text-2xl text-gold">
+                  {item.num}
+                </span>
+                <div>
+                  <h3 className="font-display text-xl text-ink">{item.title}</h3>
+                  <p className="mt-2 max-w-2xl text-muted">{item.copy}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Merged services + rooms */}
+      <section className="bg-bg-soft px-5 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                Services
+              </p>
+              <h2 className="mt-2 font-display text-3xl tracking-tight text-ink sm:text-4xl">
+                What we clean
+              </h2>
+              <p className="mt-2 max-w-lg text-muted">
+                Homes, offices, and the rooms that need the most attention.
+              </p>
+            </div>
+            <Link
+              href="/pricing"
+              className="text-sm font-semibold text-accent hover:text-accent-deep"
+            >
+              How estimates work →
+            </Link>
+          </div>
+
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {whatWeClean.map((item) => (
+              <li
+                key={item}
+                className="flex items-center gap-3 border border-line bg-surface px-4 py-3 text-ink"
+              >
+                <span
+                  className="flex h-8 w-8 shrink-0 items-center justify-center bg-accent-soft font-semibold text-accent"
+                  aria-hidden
+                >
+                  ✓
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <ul className="mt-10 divide-y divide-line border-y border-line">
+            {services.map((service) => (
+              <li key={service.slug} className="py-5">
+                <Link
+                  href={`/services#${service.slug}`}
+                  className="group block"
+                >
+                  <h3 className="font-display text-xl text-ink group-hover:text-accent-deep">
+                    {service.title}
+                  </h3>
+                  <p className="mt-1 max-w-2xl text-muted">{service.copy}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="border-y border-line px-5 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+            How we work
+          </p>
+          <h2 className="mt-2 font-display text-3xl tracking-tight text-ink sm:text-4xl">
+            Three simple steps
+          </h2>
+          <ol className="mt-10 grid gap-10 sm:grid-cols-3">
+            {bookingSteps.map((step) => (
               <li key={step.num}>
-                <p className="text-sm font-semibold text-accent">{step.num}</p>
-                <h3 className="mt-1 font-display text-lg font-bold text-ink">
+                <p className="font-display text-2xl text-gold">{step.num}</p>
+                <h3 className="mt-2 font-display text-xl text-ink">
                   {step.title}
                 </h3>
                 <p className="mt-2 text-muted">{step.copy}</p>
@@ -96,36 +224,54 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-5 py-16 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
-            Clients in Cleveland
-          </h2>
-          <p className="mt-2 text-muted">
-            Pins show where we work. Look east for 2696 Cranlyn Rd.
+      <section className="bg-bg-soft px-5 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+            Service areas
           </p>
-          <div className="mt-6">
+          <h2 className="mt-2 font-display text-3xl tracking-tight text-ink sm:text-4xl">
+            Neighborhoods across Cleveland
+          </h2>
+          <p className="mt-2 max-w-lg text-muted">
+            The shaded area shows where we clean — no street addresses on the
+            map.
+          </p>
+          <ul className="mt-8 grid grid-cols-2 gap-x-6 sm:grid-cols-3 md:grid-cols-5">
+            {serviceAreas.map((area) => (
+              <li
+                key={area}
+                className="flex items-center gap-2 border-b border-line py-3 text-ink"
+              >
+                <span className="h-1.5 w-1.5 shrink-0 bg-gold" aria-hidden />
+                {area}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8">
             <ClientMap />
           </div>
         </div>
       </section>
 
-      <section className="border-t border-line bg-bg-soft px-5 py-16 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
+      <section className="border-y border-line px-5 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="font-display text-3xl tracking-tight text-ink sm:text-4xl">
             FAQ
           </h2>
           <div className="mt-8 divide-y divide-line border-y border-line">
             {faqs.map((faq) => (
-              <details key={faq.question} className="group py-4">
-                <summary className="cursor-pointer list-none font-display text-base font-bold text-ink marker:content-none [&::-webkit-details-marker]:hidden">
+              <details key={faq.question} className="group py-5">
+                <summary className="cursor-pointer list-none font-display text-lg text-ink marker:content-none [&::-webkit-details-marker]:hidden">
                   <span className="flex items-start justify-between gap-4">
                     {faq.question}
-                    <span className="text-muted group-open:hidden" aria-hidden>
+                    <span
+                      className="shrink-0 font-sans text-xl font-semibold text-ink group-open:hidden"
+                      aria-hidden
+                    >
                       +
                     </span>
                     <span
-                      className="hidden text-muted group-open:inline"
+                      className="hidden shrink-0 font-sans text-xl font-semibold text-ink group-open:inline"
                       aria-hidden
                     >
                       −
@@ -139,13 +285,22 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-line px-5 py-14 sm:px-8">
-        <div className="mx-auto flex max-w-5xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <h2 className="font-display text-2xl font-bold text-ink">
-            Ready to book?
-          </h2>
-          <Link href="/contact#message" className="btn-primary">
-            Message Leyla
+      <section
+        id="final-cta"
+        className="bg-sage-bar px-5 py-14 text-white sm:px-8 sm:py-16"
+      >
+        <div className="mx-auto flex max-w-6xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 className="font-display text-3xl tracking-tight sm:text-4xl">
+              Ready for a cleaner home?
+            </h2>
+            <p className="mt-2 text-white/80">
+              Free estimate from Leyla — usually under two minutes to request.
+            </p>
+            <TrustBadges className="mt-5" tone="dark" />
+          </div>
+          <Link href="/contact#message" className="btn-cream shrink-0">
+            Get estimate
           </Link>
         </div>
       </section>

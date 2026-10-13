@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { Map as LeafletMap, Marker } from "leaflet";
+import type { Map as LeafletMap } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { clientPins } from "@/lib/site";
+import { serviceAreaPolygon } from "@/lib/site";
 
 type ClientMapProps = {
   className?: string;
@@ -42,46 +42,22 @@ export function ClientMap({ className = "" }: ClientMapProps) {
           maxZoom: 18,
         }).addTo(map);
 
-        const regularIcon = L.divIcon({
-          className: "client-pin",
-          html: `<span class="client-pin-dot"></span>`,
-          iconSize: [16, 16],
-          iconAnchor: [8, 8],
-        });
+        const polygon = L.polygon(
+          serviceAreaPolygon.map(([lat, lng]) => [lat, lng] as [number, number]),
+          {
+            className: "service-area-fill",
+            fillColor: "#6b7f5c",
+            fillOpacity: 0.22,
+            color: "#4f5f44",
+            weight: 2,
+            opacity: 0.7,
+          },
+        ).addTo(map);
 
-        const featuredIcon = L.divIcon({
-          className: "client-pin client-pin--featured",
-          html: `<span class="client-pin-dot client-pin-dot--featured"></span>
-            <span class="client-pin-label">2696 Cranlyn Rd</span>`,
-          iconSize: [140, 44],
-          iconAnchor: [12, 12],
-        });
-
-        const points = clientPins.map(
-          (pin) => [pin.lat, pin.lng] as [number, number],
-        );
-
-        let featuredMarker: Marker | null = null;
-
-        clientPins.forEach((pin) => {
-          const isFeatured = "featured" in pin && pin.featured;
-          const marker = L.marker([pin.lat, pin.lng], {
-            icon: isFeatured ? featuredIcon : regularIcon,
-            zIndexOffset: isFeatured ? 1000 : 0,
-          }).addTo(map!);
-
-          marker.bindPopup(
-            `<strong>${pin.area}</strong><br/><span style="color:#5a6e6c">${pin.address}</span>`,
-          );
-
-          if (isFeatured) featuredMarker = marker;
-        });
-
-        map.fitBounds(points, { padding: [48, 48], maxZoom: 12 });
+        map.fitBounds(polygon.getBounds(), { padding: [36, 36], maxZoom: 11 });
 
         window.setTimeout(() => {
           map?.invalidateSize();
-          featuredMarker?.openPopup();
           if (!cancelled) setReady(true);
         }, 200);
       } catch {
@@ -115,7 +91,7 @@ export function ClientMap({ className = "" }: ClientMapProps) {
         <div
           ref={containerRef}
           className="client-map h-[360px] w-full sm:h-[460px]"
-          aria-label="Map of client locations in Cleveland"
+          aria-label="Map of Shine and Clean service area in Cleveland"
         />
       )}
     </div>

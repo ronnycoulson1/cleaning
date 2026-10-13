@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { ClientMap } from "@/components/client-map";
 import { PageHero } from "@/components/page-hero";
 import { TextMessageForm } from "@/components/text-message-form";
-import { site } from "@/lib/site";
+import { TrustBadges } from "@/components/trust-badges";
+import { serviceAreas, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -18,30 +19,37 @@ export default function ContactPage() {
       />
 
       <section className="px-5 py-14 sm:px-8 sm:py-16">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
-            <TextMessageForm />
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">
-                Or call
-              </h2>
-              <a
-                href={site.phoneHref}
-                className="mt-3 inline-block text-lg font-semibold text-accent hover:text-accent-deep"
-              >
-                Call us
-              </a>
-              <p className="mt-2 text-muted">{site.hours}</p>
-
-              <h2 className="mt-10 font-display text-xl font-bold text-ink">
-                Clients in Cleveland
+              <TextMessageForm />
+              <TrustBadges className="mt-6" />
+              <p className="mt-4 text-sm text-muted">{site.hours}</p>
+            </div>
+            <div>
+              <h2 className="font-display text-xl text-ink">
+                Service area
               </h2>
               <p className="mt-2 text-muted">
-                Pins show where we work across the city.
+                Shaded area shows where we clean across Cleveland.
               </p>
               <div className="mt-4">
                 <ClientMap />
               </div>
+              <ul className="mt-8 grid grid-cols-2 gap-x-4 sm:grid-cols-3">
+                {serviceAreas.map((area) => (
+                  <li
+                    key={area}
+                    className="flex items-center gap-2 border-b border-line py-2.5 text-sm text-ink"
+                  >
+                    <span
+                      className="h-1.5 w-1.5 shrink-0 bg-gold"
+                      aria-hidden
+                    />
+                    {area}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

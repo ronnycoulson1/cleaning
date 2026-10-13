@@ -20,7 +20,7 @@ const dmSerif = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cleanandshine.example"),
+  metadataBase: new URL("https://shineandclean.example"),
   title: {
     default: `${site.name} — Cleaning in ${site.city}`,
     template: `%s · ${site.name}`,
@@ -42,12 +42,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${dmSans.variable} ${dmSerif.variable} h-full`}
     >
       <body className="flex min-h-full flex-col antialiased">
         <JsonLd />
         <Header />
-        <div className="flex flex-1 flex-col pb-20 md:pb-0">{children}</div>
+        <div className="flex flex-1 flex-col pb-20 lg:pb-0">{children}</div>
         <Footer />
         <StickyCta />
       </body>
