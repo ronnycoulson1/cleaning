@@ -2,7 +2,6 @@ import { trustPills } from "@/lib/site";
 
 type TrustBadgesProps = {
   className?: string;
-  /** Light surface (default) or on sage/dark bars */
   tone?: "light" | "dark";
 };
 
@@ -12,9 +11,9 @@ export function TrustBadges({
 }: TrustBadgesProps) {
   const pill =
     tone === "dark"
-      ? "border-cta/80 bg-transparent text-cta"
+      ? "border-white/30 bg-white/10 text-white"
       : "border-line bg-surface text-ink";
-  const check = tone === "dark" ? "text-cta" : "text-accent";
+  const check = tone === "dark" ? "text-accent-soft" : "text-accent";
 
   return (
     <ul className={`flex flex-wrap gap-2 ${className}`}>

@@ -25,10 +25,10 @@ export function TextMessageForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="border border-line bg-surface p-6 sm:p-8"
+      className="rounded-2xl border border-line bg-surface p-6 shadow-md sm:p-8"
       id="message"
     >
-      <h2 className="font-display text-2xl font-bold text-ink">Text Leyla</h2>
+      <h2 className="text-2xl font-bold text-ink">Get your free estimate</h2>
       <p className="mt-2 text-muted">
         Write your message and tap send. It opens your Messages app.
       </p>
@@ -59,8 +59,8 @@ export function TextMessageForm() {
         />
       </label>
 
-      <button type="submit" className="btn-primary mt-6 w-full sm:w-auto">
-        Send text message
+      <button type="submit" className="btn-primary mt-6 w-full">
+        Request free quote
       </button>
     </form>
   );

@@ -85,28 +85,48 @@ export const bookingSteps = [
 export const services = [
   {
     slug: "residential",
-    title: "Residential",
+    label: "Homes",
+    title: "Residential cleaning",
     copy: "Weekly or biweekly home cleans that keep kitchens, baths, and living spaces consistently fresh.",
   },
   {
     slug: "commercial",
-    title: "Commercial",
+    label: "Offices",
+    title: "Commercial cleaning",
     copy: "After-hours cleaning for offices, studios, and retail so your space is ready for the next day.",
   },
   {
     slug: "deep-clean",
-    title: "Deep clean",
+    label: "Deep clean",
+    title: "Deep cleaning",
     copy: "A thorough reset for neglected corners, baseboards, appliances, and high-touch surfaces.",
   },
   {
     slug: "move",
+    label: "Move-out",
     title: "Move-in / move-out",
     copy: "Detailed turnover cleans that help deposits clear and new spaces feel immediately livable.",
   },
   {
     slug: "recurring",
+    label: "Plans",
     title: "Recurring plans",
     copy: "Set a weekly or biweekly rhythm with a consistent team.",
+  },
+] as const;
+
+export const values = [
+  {
+    title: "Local & personal",
+    copy: "You work with Leyla and the people she trusts — not a rotating franchise crew.",
+  },
+  {
+    title: "Careful products",
+    copy: "Professional supplies with eco-friendly options when you want them.",
+  },
+  {
+    title: "Clear estimates",
+    copy: "A free quote before anything is booked. No surprise pricing.",
   },
 ] as const;
 

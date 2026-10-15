@@ -23,7 +23,7 @@ export function StickyCta() {
   return (
     <div
       className={`fixed inset-x-0 bottom-0 z-40 border-t border-line bg-surface px-4 py-3 transition-transform duration-200 lg:hidden ${
-        hidden ? "translate-y-full pointer-events-none" : ""
+        hidden ? "pointer-events-none translate-y-full" : ""
       }`}
       aria-hidden={hidden}
     >
